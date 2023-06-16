@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Bridge - Unduh File</title>
+</head>
+<body>
+    <h1>Unduh File</h1>
+    <form action="/" method="post">
+        <input type="text" name="download_file" placeholder="Nama File">
+        <button type="submit">Unduh</button>
+    </form>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    <br>
+    <a href="/">Kembali ke Halaman Utama</a>
+</body>
+</html>

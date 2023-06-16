@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Bridge - Daftar File di FTP</title>
+</head>
+<body>
+    <h1>Daftar File di FTP</h1>
+    <ul>
+        {% for file_name in file_list %}
+            <li>{{ file_name }}</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="/">Kembali ke Halaman Utama</a>
+</body>
+</html>
