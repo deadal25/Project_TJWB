@@ -5,12 +5,26 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            color: #333;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        h1, h2 {
+        .container {
+            max-width: 600px;
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
             color: #007BFF;
+            margin-bottom: 20px;
         }
 
         form {
@@ -18,14 +32,15 @@
         }
 
         input[type="file"], input[type="text"] {
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             margin-right: 10px;
+            width: 60%;
         }
 
         button {
-            padding: 8px 16px;
+            padding: 10px 16px;
             background-color: #007BFF;
             color: white;
             border: none;
@@ -40,6 +55,8 @@
         ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
+            text-align: left;
         }
 
         li {
@@ -48,6 +65,7 @@
 
         p.error {
             color: red;
+            margin-top: 10px;
         }
 
         a {
@@ -61,25 +79,28 @@
     </style>
 </head>
 <body>
-    <h1>FTP SERVER KELOMPOK 1 TJW</h1>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" name="upload_file" />
-        <button type="submit">Upload</button>
-    </form>
-    <h2>Daftar File</h2>
-    <ul>
-        {% for file_name in file_list %}
-            <li>{{ file_name }}</li>
-        {% endfor %}
-    </ul>
-    <h2>Unduh File</h2>
-    <form action="/" method="post">
-        <input type="text" name="download_file" placeholder="Nama File">
-        <button type="submit">Unduh</button>
-    </form>
-    {% if error_message %}
-        <p class="error">{{ error_message }}</p>
-    {% endif %}
-    <a href="/ftp">Lihat Daftar File di FTP</a>
+    <div class="container">
+        <h1>FTP SERVER KELOMPOK 1 TJW</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="upload_file" />
+            <button type="submit">Upload</button>
+        </form>
+        <h2>Daftar File</h2>
+        <ul>
+            {% for file_name in file_list %}
+                <li>{{ file_name }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Unduh File</h2>
+        <form action="/" method="post">
+            <input type="text" name="download_file" placeholder="Nama File">
+            <button type="submit">Unduh</button>
+        </form>
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+        <a href="/ftp">Lihat Daftar File di FTP</a>
+    </div>
 </body>
 </html>
+
