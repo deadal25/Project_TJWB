@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FTP SERVER KELOMPOK 1 TJWB - Daftar File di FTP</title>
+    <title>SERVER SAVVY - Daftar File di FTP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,7 +70,10 @@
             {% for file_name in file_list %}
                 <li class="file-item">
                     <span class="file-name">{{ file_name }}</span>
-                    <!-- <a href="/{{ file_name }}" class="btn">Unduh</a> -->
+                    <form method="POST" action="/delete-file">
+                        <input type="hidden" name="file_name" value="{{ file_name }}">
+                        <input type="submit" class="btn" value="Hapus">
+                    </form>
                 </li>
             {% endfor %}
         </ul>
@@ -79,3 +82,4 @@
     </div>
 </body>
 </html>
+

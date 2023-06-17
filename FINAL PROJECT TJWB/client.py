@@ -113,6 +113,17 @@ def index():
 def uploaded():
     return render_template('uploaded.html')
 
+@app.route('/delete-file', methods=['POST'])
+def delete_file():
+    file_name = request.form.get('file_name')
+    if file_name:
+        try:
+            with get_ftp_connection() as ftp:
+                ftp.delete(file_name)
+        except Exception as e:
+            print(f"Error during file deletion: {str(e)}")
+
+    return redirect('/ftp')
 
 # Route ingin melihat daftar file
 @app.route('/ftp')
