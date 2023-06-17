@@ -10,20 +10,41 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: column;
+        }
+
+        .container {
+            width: 600px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #333;
+            color: #007BFF;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
 
         li {
             margin-bottom: 10px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-name {
+            flex-grow: 1;
         }
 
         .btn {
@@ -43,13 +64,18 @@
     </style>
 </head>
 <body>
-    <h1>Daftar File di FTP</h1>
-    <ul>
-        {% for file_name in file_list %}
-            <li>{{ file_name }}</li>
-        {% endfor %}
-    </ul>
-    <br>
-    <a href="/" class="btn">Kembali ke Halaman Utama</a>
+    <div class="container">
+        <h1>Daftar File di FTP</h1>
+        <ul>
+            {% for file_name in file_list %}
+                <li class="file-item">
+                    <span class="file-name">{{ file_name }}</span>
+                    <!-- <a href="/{{ file_name }}" class="btn">Unduh</a> -->
+                </li>
+            {% endfor %}
+        </ul>
+        <br>
+        <a href="/" class="btn">Kembali ke Halaman Utama</a>
+    </div>
 </body>
 </html>

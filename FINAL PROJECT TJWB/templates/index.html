@@ -81,6 +81,7 @@
 <body>
     <div class="container">
         <h1>FTP SERVER KELOMPOK 1 TJW</h1>
+        <h3>Masukkan File Yang Ingin Diupload</h3>
         <form action="/" method="post" enctype="multipart/form-data">
             <input type="file" name="upload_file" />
             <button type="submit">Upload</button>
@@ -91,7 +92,7 @@
                 <li>{{ file_name }}</li>
             {% endfor %} -->
         </ul>
-        <h2>Unduh File</h2>
+        <h3>Unduh File Sesuai dengan Nama di Daftar File FTP</h3>
         <form action="/" method="post">
             <input type="text" name="download_file" placeholder="Nama File">
             <button type="submit">Unduh</button>
@@ -103,4 +104,3 @@
     </div>
 </body>
 </html>
-
