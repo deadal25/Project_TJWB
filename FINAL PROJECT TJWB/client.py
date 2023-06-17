@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # Konfigurasi FTP
 ftp_host = "192.168.1.13"
-ftp_user = 'alqa'
-ftp_password = 'alqa'
+ftp_user = 'ServerSavvy'
+ftp_password = 'Kelompok1TJW'
 
 # Set secret key for session management
 app.secret_key = 'your_secret_key'
@@ -68,7 +68,7 @@ def login():
         password = request.form.get('password')
         if not username or not password:
             return render_template('login.html', error_message='Mohon lengkapi username dan password')
-        if username == 'alqa' and password == 'alqa':
+        if username == 'ServerSavvy' and password == 'Kelompok1TJW':
             session['username'] = username
             return redirect('/')
         else:

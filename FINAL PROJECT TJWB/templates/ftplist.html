@@ -6,17 +6,17 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #007BFF; /* Mengubah warna latar belakang menjadi biru */
+            display:flex;
+            justify-content:center;
+            align-items:top;
+            height: 80vh;
+            background-color: #007BFF;
         }
 
         .container {
-            width: 600px;
+            width: 800px;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #f2f2f2;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -28,24 +28,20 @@
             margin-bottom: 20px;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
 
-        li {
-            margin-bottom: 10px;
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
 
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .file-name {
-            flex-grow: 1;
+        th {
+            background-color: #f2f2f2;
         }
 
         .btn {
@@ -67,20 +63,25 @@
 <body>
     <div class="container">
         <h1>Daftar File di FTP</h1>
-        <ul>
+        <table>
+            <tr>
+                <th>Nama File</th>
+                <th>Hapus File</th>
+            </tr>
             {% for file_name in file_list %}
-                <li class="file-item">
-                    <span class="file-name">{{ file_name }}</span>
-                    <form method="POST" action="/delete-file">
-                        <input type="hidden" name="file_name" value="{{ file_name }}">
-                        <input type="submit" class="btn" value="Hapus">
-                    </form>
-                </li>
+                <tr>
+                    <td>{{ file_name }}</td>
+                    <td>
+                        <form method="POST" action="/delete-file">
+                            <input type="hidden" name="file_name" value="{{ file_name }}">
+                            <input type="submit" class="btn" value="Hapus">
+                        </form>
+                    </td>
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
         <br>
         <a href="/" class="btn">Kembali ke Halaman Utama</a>
     </div>
 </body>
 </html>
-
