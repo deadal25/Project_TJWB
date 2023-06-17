@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FTP SERVER KELOMPOK 1 TJWB - Daftar File di FTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Daftar File di FTP</h1>
+    <ul>
+        {% for file_name in file_list %}
+            <li>{{ file_name }}</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="/" class="btn">Kembali ke Halaman Utama</a>
+</body>
+</html>
