@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, send_file, make_response
+from flask import Flask, request, render_template, redirect, send_file, make_response, session
 from ftplib import FTP
 from io import BytesIO
 
@@ -9,23 +9,29 @@ ftp_host = "192.168.1.13"
 ftp_user = 'alqa'
 ftp_password = 'alqa'
 
+# Set secret key for session management
+app.secret_key = 'your_secret_key'
+
+
 def get_ftp_connection():
     ftp = FTP(ftp_host)
     ftp.login(user=ftp_user, passwd=ftp_password)
     return ftp
 
-# Fungsi untuk mengupload file ke server FTP
+
+# Fungsi untuk mengupload file ke server FTP0
 def upload_file(file):
     try:
         with get_ftp_connection() as ftp:
             # Mengirim file langsung dari objek FileStorage
             ftp.storbinary('STOR {}'.format(file.filename), file.stream)
-        
+
         file_list = get_file_list()
         file_list.append(file.filename)
     except Exception as e:
         # Tangani kesalahan jika terjadi
         print(f"Error during file upload: {str(e)}")
+
 
 # Fungsi untuk mengunduh file dari server FTP
 def download_file(file_name):
@@ -42,6 +48,7 @@ def download_file(file_name):
         # Tangani kesalahan jika terjadi
         print(f"Error during file download: {str(e)}")
 
+
 def get_file_list():
     try:
         with get_ftp_connection() as ftp:
@@ -52,6 +59,30 @@ def get_file_list():
         # Tangani kesalahan jika terjadi
         print(f"Error during getting file list: {str(e)}")
         return []
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if not username or not password:
+            return render_template('login.html', error_message='Mohon lengkapi username dan password')
+        if username == 'alqa' and password == 'alqa':
+            session['username'] = username
+            return redirect('/')
+        else:
+            return render_template('login.html', error_message='Invalid username or password')
+    return render_template('login.html')
+
+
+
+# Decorator to check if the user is logged in before accessing certain routes
+@app.before_request
+def require_login():
+    if request.path != '/login' and 'username' not in session:
+        return redirect('/login')
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -73,19 +104,28 @@ def index():
                 return response
             else:
                 return render_template('index.html', error_message='File tidak ditemukan')
-            
+
     file_list = get_file_list()
     return render_template('index.html', file_list=file_list)
+
 
 @app.route('/uploaded')
 def uploaded():
     return render_template('uploaded.html')
+
 
 # Route ingin melihat daftar file
 @app.route('/ftp')
 def ftp_file_list():
     file_list = get_file_list()
     return render_template('ftplist.html', file_list=file_list)
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/login')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
