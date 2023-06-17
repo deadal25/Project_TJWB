@@ -5,7 +5,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #007BFF;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,8 +14,12 @@
         }
 
         .container {
-            max-width: 600px;
-            text-align: center;
+            max-width: 800px; /* Mengubah lebar maksimum menjadi 800px */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-align: left;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 8px;
@@ -29,6 +33,16 @@
 
         form {
             margin-bottom: 20px;
+        }
+        .upload-form {
+            flex-grow: 1;
+            margin-right: 20px;
+        }
+        .file-list {
+            flex-grow: 1;
+        }
+        .download-form {
+            margin-top: 20px;
         }
 
         input[type="file"], input[type="text"] {
@@ -80,27 +94,37 @@
 </head>
 <body>
     <div class="container">
-        <h1>SERVER SAVVY</h1>
-        <h2>Upload File</h2>
-        <form action="/" method="post" enctype="multipart/form-data">
-            <input type="file" name="upload_file" />
-            <button type="submit">Upload</button>
-        </form>
-        <!-- <h2>Daftar File</h2>
-        <ul>
-            {% for file_name in file_list %}
-                <li>{{ file_name }}</li>
-            {% endfor %} -->
-        </ul>
-        <h2>Unduh File FTP</h2>
-        <form action="/" method="post">
-            <input type="text" name="download_file" placeholder="Nama File">
-            <button type="submit">Unduh</button>
-        </form>
-        {% if error_message %}
-            <p class="error">{{ error_message }}</p>
-        {% endif %}
-        <a href="/ftp">Lihat Daftar File di FTP</a>
+        <div class="upload-form">
+            <h1>SERVER SAVVY</h1>
+            <h2>Upload File</h2>
+            <form action="/" method="post" enctype="multipart/form-data">
+                <input type="file" name="upload_file" />
+                <button type="submit">Upload</button>
+            </form>
+            <!-- <h2>Daftar File</h2>
+            <ul>
+                {% for file_name in file_list %}
+                    <li>{{ file_name }}</li>
+                {% endfor %} -->
+            </ul>
+            <h2>Unduh File FTP</h2>
+            <form action="/" method="post" class="download-form">
+                <input type="text" name="download_file" placeholder="Nama File">
+                <button type="submit">Unduh</button>
+            </form>
+            {% if error_message %}
+                <p class="error">{{ error_message }}</p>
+            {% endif %}
+        </div>
+        <div class="file-list">
+            <h2>Daftar File di FTP</h2>
+            <ul>
+                {% for file_name in file_list %}
+                    <li>{{ file_name }}</li>
+                {% endfor %}
+            </ul>
+            <a href="/ftp">Lihat Daftar File di FTP</a>
+        </div>
     </div>
 </body>
 </html>
