@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # Konfigurasi FTP
 ftp_host = "192.168.1.13"
-ftp_user = 'ServerSavvy'
-ftp_password = 'Kelompok1TJW'
+ftp_user = 'AfofaServer'
+ftp_password = 'Kelompok1TJWB'
 
 # Mengatur kunci rahasia untuk manajemen sesi
 app.secret_key = 'your_secret_key'
@@ -31,7 +31,6 @@ def upload_file(file):
     except Exception as e:
         # Tangani kesalahan jika terjadi
         print(f"Error during file upload: {str(e)}")
-
 
 # Fungsi untuk mengunduh file dari server FTP
 def download_file(file_name):
@@ -68,7 +67,7 @@ def login():
         password = request.form.get('password')
         if not username or not password:
             return render_template('login.html', error_message='Mohon lengkapi username dan password')
-        if username == 'ServerSavvy' and password == 'Kelompok1TJW':
+        if username == 'AfofaServer' and password == 'Kelompok1TJWB':
             session['username'] = username
             return redirect('/')
         else:
@@ -144,11 +143,11 @@ def ftp_file_list():
     file_list = get_file_list()
     return render_template('ftplist.html', file_list=file_list)
 
-
-# @app.route('/logout')
-# def logout():
-#     session.pop('username', None)
-#     return redirect('/login')
+#Rute untuk Logout
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/login')
 
 #menjalankan aplikasi Flask ketika file ini dieksekusi langsung 
 if __name__ == '__main__':

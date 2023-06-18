@@ -1,84 +1,130 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>AFOFA SAVVY</title>
+    <title>AFOFA SERVER</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #007BFF;
-            padding: 20px;
+            background-color: #ffffff;
+            background-image: url("https://img.freepik.com/premium-vector/modern-isometric-design-cloud-server-management-man-working-data-center-room-managing-data-cloud-server-vector-illustration_142963-86.jpg?w=740");
+            padding: 150px;
         }
-
         .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: flex-start;
             text-align: center;
-            background-color: #ffffff;
+        }
+        .upload-form {
+            flex: 0 0 400px;
+            padding: 20px;
+            height: 307px;
+            background-color: #fafdfee6;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+        .file-list {
+            flex: 1 0 400px;
+            padding: 20px;
+            background-color: #0cacf1e9;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        .upload-form,
-        .file-list {
-            padding: 20px;
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
             margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         th,
         td {
             padding: 8px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #080808df;
+            color: white;
         }
-
         th {
-            background-color: #1ba9f6;
+            background-color: #f3f9fcdd;
+            color: rgb(17, 2, 2);
         }
-
         p.error {
             color: red;
             margin-top: 10px;
         }
-
         a {
-            color: #007BFF;
-            text-decoration: none;
+            color: #f6f8f9;
+            font-family: sans-serif;
         }
-
         a:hover {
             text-decoration: underline;
         }
-
         .file-heading {
             margin-bottom: 10px;
             text-align: center;
+            color: #ffffff;
         }
-
-        .file-list {
-            margin-bottom: 10px;
+        button {
+            background-color: #0cacf1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        button:hover {
+            background-color: #0777a8;
+        }
+        h1,
+        h2 {
+            color: #0cacf1;
+            font-family: sans-serif;
+        }
+        .download-form input[type="text"] {
+            width: 245px;
+            /* Ubah ukuran inputan unduh sesuai kebutuhan */
+            height: 30px;
+            border: 1px solid #0cacf1;
+        }
+        /* Gaya tombol "Choose File" */
+        .upload-form input[type="file"] {
+            display: inline-block;
+            /* Sembunyikan input asli */
+            background-color: #0b9edf;
+            color: white;
+            padding: 8px 4px;
+            cursor: pointer;
+        }
+        .btnlgt {
+            background-color: #f10c0c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        .btnlgt:hover {
+            background-color: #f10c0c;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="upload-form">
-            <h1 style="font-size: 40px;">SERVER SAVVY</h1>
+            <h1 style="font-size: 40px;">AFOFA SERVER</h1>
             <h2>Upload File</h2>
             <form action="/" method="post" enctype="multipart/form-data">
-                <input type="file" name="upload_file" />
+                <input type="file" name="upload_file" id="upload_file_input" />
+                <label for="upload_file_input"></label>
                 <button type="submit">Upload</button>
             </form>
-            <h2>Unduh File FTP</h2>
+            <h2>Download File</h2>
             <form action="/" method="post" class="download-form">
                 <input type="text" name="download_file" placeholder="Nama File">
                 <button type="submit">Unduh</button>
@@ -104,6 +150,10 @@
             <a href="/ftp" style="margin-top: 30px;">Lihat Daftar File di FTP</a>
         </div>
     </div>
+    <div>
+        <form action="/logout">
+            <button class="btnlgt" type="submit">Logout</button>
+        </form>
+    </div>
 </body>
-
 </html>
