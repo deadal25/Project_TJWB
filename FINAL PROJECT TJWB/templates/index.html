@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>SERVER SAVVY</title>
+    <title>AFOFA SAVVY</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,51 +11,37 @@
         }
 
         .container {
-            max-width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            align-items: flex-start;
             text-align: center;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            color: #007BFF;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 40px;
-        }
-
-        form {
-            margin-bottom: 20px;
-        }
-
         .upload-form,
         .file-list {
-            width: 100%;
             padding: 20px;
-        }
-
-        .file-list {
-            text-align: left;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
+            margin-bottom: 20px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #1ba9f6;
         }
 
         p.error {
@@ -75,8 +62,13 @@
             margin-bottom: 10px;
             text-align: center;
         }
+
+        .file-list {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="upload-form">
@@ -92,7 +84,7 @@
                 <button type="submit">Unduh</button>
             </form>
             {% if error_message %}
-                <p class="error">{{ error_message }}</p>
+            <p class="error">{{ error_message }}</p>
             {% endif %}
         </div>
         <div class="file-list">
@@ -100,15 +92,18 @@
             <table>
                 <tr>
                     <th>Nama File</th>
+                    <th>Tindakan</th>
                 </tr>
                 {% for file_name in file_list %}
                 <tr>
                     <td>{{ file_name }}</td>
+                    <td><a href="/download-file?file_name={{ file_name }}" download="{{ file_name }}">Download</a></td>
                 </tr>
                 {% endfor %}
             </table>
-            <a href="/ftp">Lihat Daftar File di FTP</a>
+            <a href="/ftp" style="margin-top: 30px;">Lihat Daftar File di FTP</a>
         </div>
     </div>
 </body>
+
 </html>

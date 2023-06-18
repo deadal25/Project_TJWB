@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>SERVER SAVVY - Daftar File di FTP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            display:flex;
-            justify-content:center;
-            align-items:top;
+            display: flex;
+            justify-content: center;
+            align-items: top;
             height: 80vh;
             background-color: #007BFF;
         }
@@ -34,14 +35,15 @@
             margin-top: 10px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #1ba9f6;
         }
 
         .btn {
@@ -60,28 +62,30 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Daftar File di FTP</h1>
         <table>
             <tr>
                 <th>Nama File</th>
-                <th>Hapus File</th>
+                <th>Delete File</th>
             </tr>
             {% for file_name in file_list %}
-                <tr>
-                    <td>{{ file_name }}</td>
-                    <td>
-                        <form method="POST" action="/delete-file">
-                            <input type="hidden" name="file_name" value="{{ file_name }}">
-                            <input type="submit" class="btn" value="Hapus">
-                        </form>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ file_name }}</td>
+                <td>
+                    <form method="POST" action="/delete-file">
+                        <input type="hidden" name="file_name" value="{{ file_name }}">
+                        <input type="submit" class="btn" value="Delete">
+                    </form>
+                </td>
+            </tr>
             {% endfor %}
         </table>
         <br>
         <a href="/" class="btn">Kembali ke Halaman Utama</a>
     </div>
 </body>
+
 </html>
